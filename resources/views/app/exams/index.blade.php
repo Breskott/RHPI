@@ -112,6 +112,7 @@
                                             href="{{ $button_wpp }}"
                                             class="mr-1"
                                             target="_blank"
+                                            title="Informar por Whatsapp"
                                         >
                                             <button
                                                 type="button"
