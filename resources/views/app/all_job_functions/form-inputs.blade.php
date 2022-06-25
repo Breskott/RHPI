@@ -27,7 +27,7 @@
             name="start_time"
             label="Horario de Inicio"
             value="{{ old('start_time', ($editing ? $jobFunctions->start_time : '')) }}"
-            placeholder="Start Time"
+            placeholder="Horario de Inicio"
             type="time"
             required
         ></x-inputs.time>
@@ -39,7 +39,7 @@
             label="Horario Fim "
             value="{{ old('end_time', ($editing ? $jobFunctions->end_time : '')) }}"
             type="time"
-            placeholder="End Time"
+            placeholder="Horario Fim "
             required
         ></x-inputs.time>
     </x-inputs.group>
@@ -50,7 +50,7 @@
             label="Saida Intervalo"
             value="{{ old('time_output_interval', ($editing ? $jobFunctions->time_output_interval : '')) }}"
             type="time"
-            placeholder="Time Output Interval"
+            placeholder="Saida Intervalo"
             required
         ></x-inputs.time>
     </x-inputs.group>
@@ -61,7 +61,7 @@
             label="Entrada Intervalo"
             value="{{ old('time_entry_interval', ($editing ? $jobFunctions->time_entry_interval : '')) }}"
             type="time"
-            placeholder="Time Entry Interval"
+            placeholder="Entrada Intervalo"
             required
         ></x-inputs.time>
     </x-inputs.group>

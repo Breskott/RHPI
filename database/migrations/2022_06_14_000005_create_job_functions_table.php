@@ -16,10 +16,10 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('name');
             $table->decimal('salary', 10, 2);
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->time('time_output_interval');
-            $table->time('time_entry_interval');
+            $table->string('start_time');
+            $table->string('end_time');
+            $table->string('time_output_interval');
+            $table->string('time_entry_interval');
 
             $table->timestamps();
         });
