@@ -26,10 +26,10 @@ class JobFunctionsUpdateRequest extends FormRequest
         return [
             'name' => ['required', 'max:255', 'string'],
             'salary' => ['required', 'numeric'],
-            'start_time' => ['required', 'date_format:H:i:s'],
-            'end_time' => ['required', 'date_format:H:i:s'],
-            'time_output_interval' => ['required', 'date_format:H:i:s'],
-            'time_entry_interval' => ['required', 'date_format:H:i:s'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'end_time' => ['required', 'date_format:H:i'],
+            'time_output_interval' => ['required', 'date_format:H:i'],
+            'time_entry_interval' => ['required', 'date_format:H:i'],
         ];
     }
 }
