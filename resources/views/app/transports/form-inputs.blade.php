@@ -13,7 +13,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full lg:w-3/12">
-        <x-inputs.select name="active" label="Active">
+        <x-inputs.select name="active" label="Ativo" placeholder="Ativo">
             @php $selected = old('active', ($editing ? $transport->active : '')) @endphp
             <option value="S" {{ $selected == 'S' ? 'selected' : '' }} >SIM</option>
             <option value="N" {{ $selected == 'N' ? 'selected' : '' }} >NÃO</option>
