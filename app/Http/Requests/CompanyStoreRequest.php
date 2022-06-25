@@ -30,7 +30,7 @@ class CompanyStoreRequest extends FormRequest
             'zip_code' => ['required', 'max:255', 'string'],
             'address' => ['required', 'max:255', 'string'],
             'number' => ['required', 'max:255', 'string'],
-            'district' => ['required', 'max:2', 'string'],
+            'district' => ['required', 'max:255', 'string'],
             'complement' => ['nullable', 'max:255', 'string'],
             'city' => ['required', 'max:255', 'string'],
             'state' => ['required', 'max:2'],
