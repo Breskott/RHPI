@@ -166,7 +166,7 @@
     <script>
         $(document).ready(function ($) {
             $('#document_cnpj').mask('99.999.999/9999-99');
-            $('#zip_code').mask('99999-999');
+            $('#zip_code').mask('99.999-999');
             $('#telephone').mask('(99) 9999-9999');
             $('#cell_phone').mask('(99) 99999-9999');
 

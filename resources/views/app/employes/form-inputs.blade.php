@@ -464,7 +464,7 @@
     <script>
         $(document).ready(function ($) {
             $('#document_cpf').mask('999.999.999-99');
-            $('#zip_code').mask('99999-999');
+            $('#zip_code').mask('99.999-999');
             $('#telephone').mask('(99) 9999-9999');
             $('#telephone_emergency').mask('(99) 9999-9999');
             $('#cell_phone').mask('(99) 99999-9999');
