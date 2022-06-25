@@ -111,13 +111,14 @@
                                         <a
                                             href="{{ $button_wpp }}"
                                             class="mr-1"
+                                            target="_blank"
                                         >
                                             <button
                                                 type="button"
                                                 class="button"
                                             >
                                                 <i
-                                                    class="icon ion-md-whatsapp"
+                                                    class="icon ion-logo-whatsapp"
                                                 ></i>
                                             </button>
                                         </a>
