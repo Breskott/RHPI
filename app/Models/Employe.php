@@ -83,4 +83,24 @@ class Employe extends Model
     {
         return $this->hasMany(Dependent::class);
     }
+
+    public function getTelephoneFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->telephone);
+    }
+
+    public function getTelephoneEmergencyFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->telephone_emergency);
+    }
+
+    public function getCellPhoneFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->cell_phone);
+    }
+
+    private function numericMaskRemove($value)
+    {
+        return preg_replace('/[^0-9]/', '', $value);
+    }
 }

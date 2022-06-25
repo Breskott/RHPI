@@ -35,6 +35,7 @@
     <x-inputs.group class="w-full lg:w-4/12">
         <x-inputs.text
             name="document_cpf"
+            id="document_cpf"
             label="CPF"
             value="{{ old('document_cpf', ($editing ? $dependent->document_cpf : '')) }}"
             maxlength="255"
@@ -62,3 +63,11 @@
         </x-inputs.select>
     </x-inputs.group>
 </div>
+
+@section('script_inject')
+    <script>
+        $(document).ready(function ($) {
+            $('#document_cpf').mask('999.999.999-99');
+        });
+    </script>
+@endsection

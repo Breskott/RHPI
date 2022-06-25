@@ -90,4 +90,12 @@
             })
         </script>
     </body>
+    <!-- **********Included Scripts*********** -->
+    <!-- Jquery Library 2.1 JavaScript-->
+    <script src="{{ asset('assets/plugin/jquery/jquery-2.1.4.min.js') }}"></script>
+
+    <!-- Mask form -->
+    <script src="{{ asset('assets/plugin/jquery_mask/jquery.mask.min.js') }}"></script>
+
+    @yield('script_inject')
 </html>

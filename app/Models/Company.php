@@ -37,4 +37,29 @@ class Company extends Model
     {
         return $this->hasMany(Exam::class);
     }
+
+    public function getCellPhoneFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->cell_phone);
+    }
+
+    public function getDocumentCnpjFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->document_cnpj);
+    }
+
+    public function getZipCodeFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->zip_code);
+    }
+
+    public function getTelephoneFormatedAttribute()
+    {
+        return $this->numericMaskRemove($this->telephone);
+    }
+
+    private function numericMaskRemove($value)
+    {
+        return preg_replace('/[^0-9]/', '', $value);
+    }
 }

@@ -47,6 +47,7 @@
                     </div>
                 </div>
 
+
                 <div class="block w-full overflow-auto scrolling-touch">
                     <table class="w-full max-w-full mb-4 bg-transparent">
                         <thead class="text-gray-700">
@@ -71,6 +72,13 @@
                         </thead>
                         <tbody class="text-gray-600">
                             @forelse($exams as $exam)
+                                @php
+                                    // Function button whatsapp
+                                    $message_wpp = "Olá *".$exam->employe()->first()->name.'*';
+                                    $message_wpp .= " você possui uma consulta agendada para ir! Entre em contato conosco para mais informações. ";
+                                    $button_wpp = "https://api.whatsapp.com/send?phone=+55".preg_replace('/\D+/', '', $exam->employe()->first()->cell_phone)."&text=".urlencode($message_wpp);
+                                @endphp
+
                             <tr class="hover:bg-gray-50">
                                 <td class="px-4 py-3 text-left">
                                     {{ optional($exam->company)->name ?? '-' }}
@@ -100,6 +108,19 @@
                                             align-middle
                                         "
                                     >
+                                        <a
+                                            href="{{ $button_wpp }}"
+                                            class="mr-1"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="button"
+                                            >
+                                                <i
+                                                    class="icon ion-md-whatsapp"
+                                                ></i>
+                                            </button>
+                                        </a>
                                         @can('update', $exam)
                                         <a
                                             href="{{ route('exams.edit', $exam) }}"

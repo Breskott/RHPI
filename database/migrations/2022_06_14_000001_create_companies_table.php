@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->string('complement')->nullable();
             $table->string('city');
             $table->char('state', 2);
-            $table->string('district', 2);
+            $table->string('district');
             $table->string('telephone')->nullable();
             $table->string('cell_phone')->nullable();
 

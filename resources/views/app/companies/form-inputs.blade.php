@@ -4,6 +4,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="name"
+            id="name"
             label="Nome Empresa"
             value="{{ old('name', ($editing ? $company->name : '')) }}"
             maxlength="255"
@@ -15,6 +16,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="fantasy_name"
+            id="fantasy_name"
             label="Nome Fantasia"
             value="{{ old('fantasy_name', ($editing ? $company->fantasy_name : '')) }}"
             maxlength="255"
@@ -25,6 +27,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="document_cnpj"
+            id="document_cnpj"
             label="CNPJ"
             value="{{ old('document_cnpj', ($editing ? $company->document_cnpj : '')) }}"
             maxlength="255"
@@ -36,6 +39,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="zip_code"
+            id="zip_code"
             label="CEP"
             value="{{ old('zip_code', ($editing ? $company->zip_code : '')) }}"
             maxlength="255"
@@ -47,6 +51,7 @@
     <x-inputs.group class="w-full lg:w-9/12">
         <x-inputs.text
             name="address"
+            id="address"
             label="Endereço"
             value="{{ old('address', ($editing ? $company->address : '')) }}"
             maxlength="255"
@@ -58,6 +63,7 @@
     <x-inputs.group class="w-full lg:w-3/12">
         <x-inputs.text
             name="number"
+            id="number"
             label="Número"
             value="{{ old('number', ($editing ? $company->number : '')) }}"
             maxlength="255"
@@ -69,9 +75,10 @@
     <x-inputs.group class="w-full">
         <x-inputs.text
             name="district"
+            id="district"
             label="Bairro"
             value="{{ old('district', ($editing ? $company->district : '')) }}"
-            maxlength="2"
+            maxlength="255"
             placeholder="Bairro"
             required
         ></x-inputs.text>
@@ -90,6 +97,7 @@
     <x-inputs.group class="w-full lg:w-9/12">
         <x-inputs.text
             name="city"
+            id="city"
             label="Cidade"
             value="{{ old('city', ($editing ? $company->city : '')) }}"
             maxlength="255"
@@ -99,7 +107,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full lg:w-3/12">
-        <x-inputs.select name="state" label="Estado">
+        <x-inputs.select name="state" id="state" label="Estado">
             @php $selected = old('state', ($editing ? $company->state : '')) @endphp
             <option value="AC" {{ $selected == 'AC' ? 'selected' : '' }} >AC</option>
             <option value="AL" {{ $selected == 'AL' ? 'selected' : '' }} >AL</option>
@@ -134,6 +142,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="telephone"
+            id="telephone"
             label="Telefone"
             value="{{ old('telephone', ($editing ? $company->telephone : '')) }}"
             maxlength="255"
@@ -144,6 +153,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="cell_phone"
+            id="cell_phone"
             label="Celular"
             value="{{ old('cell_phone', ($editing ? $company->cell_phone : '')) }}"
             maxlength="255"
@@ -151,3 +161,43 @@
         ></x-inputs.text>
     </x-inputs.group>
 </div>
+
+@section('script_inject')
+    <script>
+        $(document).ready(function ($) {
+            $('#document_cnpj').mask('99.999.999/9999-99');
+            $('#zip_code').mask('99999-999');
+            $('#telephone').mask('(99) 9999-9999');
+            $('#cell_phone').mask('(99) 99999-9999');
+
+            $("#document_cnpj").blur(function(){
+                $cnpj = $("#document_cnpj").val().replace(/[^\d]+/g,'')
+                if ($cnpj == ""){}
+                else {
+                    // Ajax send Token Application
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: '{{url("getDocuments")}}' + '/' + $cnpj,
+                        dataType: 'json',
+                        success: function(resposta){
+                            $("#name").val(resposta.nome);
+                            $("#fantasy_name").val(resposta.fantasia);
+                            $("#telephone").val(resposta.telefone);
+                            $("#address").val(resposta.logradouro);
+                            $("#number").val(resposta.numero);
+                            $("#district").val(resposta.bairro);
+                            $("#city").val(resposta.municipio);
+                            $("#state").val(resposta.uf);
+                            $("#zip_code").val(resposta.cep);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+@endsection

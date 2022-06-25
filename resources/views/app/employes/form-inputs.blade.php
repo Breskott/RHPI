@@ -25,6 +25,7 @@
     <x-inputs.group class="w-full lg:w-3/12">
         <x-inputs.text
             name="telephone_emergency"
+            id="telephone_emergency"
             label="Telefone de Emergência"
             value="{{ old('telephone_emergency', ($editing ? $employe->telephone_emergency : '')) }}"
             maxlength="255"
@@ -35,6 +36,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="telephone"
+            id="telephone"
             label="Telefone"
             value="{{ old('telephone', ($editing ? $employe->telephone : '')) }}"
             maxlength="255"
@@ -45,6 +47,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="cell_phone"
+            id="cell_phone"
             label="Celular"
             value="{{ old('cell_phone', ($editing ? $employe->cell_phone : '')) }}"
             maxlength="255"
@@ -149,6 +152,7 @@
     <x-inputs.group class="w-full">
         <x-inputs.text
             name="zip_code"
+            id="zip_code"
             label="CEP"
             value="{{ old('zip_code', ($editing ? $employe->zip_code : '')) }}"
             maxlength="255"
@@ -279,6 +283,7 @@
     <x-inputs.group class="w-full lg:w-6/12">
         <x-inputs.text
             name="document_cpf"
+            id="document_cpf"
             label="CPF"
             value="{{ old('document_cpf', ($editing ? $employe->document_cpf : '')) }}"
             maxlength="255"
@@ -406,6 +411,7 @@
             value="{{ old('email', ($editing ? $employe->email : '')) }}"
             maxlength="255"
             placeholder="E-mail"
+            type="email"
         ></x-inputs.email>
     </x-inputs.group>
 
@@ -453,3 +459,15 @@
         @enderror
     </x-inputs.group>
 </div>
+
+@section('script_inject')
+    <script>
+        $(document).ready(function ($) {
+            $('#document_cpf').mask('999.999.999-99');
+            $('#zip_code').mask('99999-999');
+            $('#telephone').mask('(99) 9999-9999');
+            $('#telephone_emergency').mask('(99) 9999-9999');
+            $('#cell_phone').mask('(99) 99999-9999');
+        });
+    </script>
+@endsection

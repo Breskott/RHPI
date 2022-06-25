@@ -27,6 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('/')
     ->middleware('auth')
     ->group(function () {
+        Route::get('getDocuments/{cnpj}', [CompanyController::class, 'getReceitaFederal'])->name('getDocuments');
         Route::resource('companies', CompanyController::class);
         Route::resource('employes', EmployeController::class);
         Route::resource('dependents', DependentController::class);
